@@ -10,9 +10,9 @@ toArabic str = num + toArabic rest
 oneStep :: String  -> (Int, String)
 oneStep ('M' : rest) = (1000, rest)
 oneStep ('D' : rest) = (500, rest)
+oneStep ('C' : rest) = (100, rest)
 oneStep ('C' : 'D' : rest) = (400, rest)
 oneStep ('C' : 'M' : rest) = (900, rest)
-oneStep ('C' : rest) = (100, rest)
 oneStep ('X' : 'C' : rest) = (90, rest)
 oneStep ('L' : rest) = (50, rest)
 oneStep ('X' : 'L' : rest) = (40, rest)
@@ -22,13 +22,7 @@ oneStep ('V' : rest) = (5, rest)
 oneStep ('I' : 'V' : rest) = (4, rest)
 oneStep ('I' : rest) = (1, rest)
 oneStep (_: rest) = (0,rest)
---oneStep (x:y:ys) = (mapping [x,y],ys)
---oneStep (x:[]) = (mapping [x], "")
 
---oneStep str =
---   head [(num, drop (length roman) str) | 
---                (roman,num) <- mapping, roman `isPrefixOf` str]    
-
-testCases = ["MCMXC", "MMVIII", "MDCLXVI"]--,"ME","M "]
+testCases = ["MCMXC", "MMVIII", "MDCLXVIA"]
 test = zip testCases (map toArabic testCases)
 
